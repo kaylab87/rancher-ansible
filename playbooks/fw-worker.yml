@@ -1,0 +1,7 @@
+---
+- hosts: kworkers
+  become: yes
+  tasks:
+    - name: FW rules for WORKER nodes
+      ansible.builtin.script: /home/zaza/scripts/fw-worker.sh
+

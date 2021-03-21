@@ -1,0 +1,6 @@
+---
+- hosts: mng
+  become: yes
+  tasks:
+    - name: Install docker engine
+      ansible.builtin.script: /home/zaza/scripts/docker.sh

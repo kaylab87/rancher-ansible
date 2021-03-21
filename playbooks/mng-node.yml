@@ -1,0 +1,20 @@
+---
+- hosts: mng
+  become: yes
+  tasks:
+    - name: Download helm binary archive.
+      unarchive:
+        src: https://get.helm.sh/helm-v3.5.2-linux-amd64.tar.gz
+        dest: /tmp
+        creates: /usr/local/bin/helm
+        remote_src: yes
+
+    - name: Move helm binary into place.
+      command: cp /tmp/linux-amd64/helm /usr/local/bin/helm
+      args:
+        creates: /usr/local/bin/helm
+                
+    - name: Download RKE
+      ansible.builtin.script: /home/zaza/scripts/rke-download.sh
+    - name: Download Kubectl
+      ansible.builtin.script: /home/zaza/scripts/kubectl-download.sh

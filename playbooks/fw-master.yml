@@ -1,0 +1,7 @@
+---
+- hosts: kmasters
+  become: yes
+  tasks:
+    - name: FW rules for MASTER nodes
+      ansible.builtin.script: /home/zaza/scripts/fw-master.sh
+

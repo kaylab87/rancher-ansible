@@ -1,0 +1,8 @@
+---
+- hosts: mng
+  become: yes
+  tasks:           
+    - name: Install RKE cluster.
+      ansible.builtin.script: /home/zaza/scripts/rke-up.sh
+    - name: Add Kubernetes env.
+      ansible.builtin.script: /home/zaza/scripts/env-kubectl.sh
