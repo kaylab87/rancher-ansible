@@ -1,0 +1,30 @@
+---
+ - hosts: rancher 
+ - name: Deploying ansible user
+   hosts: rancher
+   remote_user: root
+   vars:
+     ansible_become_pass: Qwerty@1974
+   tasks:
+
+     - name: Create User
+       user:
+         name: mng
+         groups: wheel
+         createhome: true
+         comment: 'Ansible Management Account'
+         expires: -1
+         password: 'Qwerty@1234'
+
+     - name: Install SSH Key
+       authorized_key:
+         user: mng
+         state: present
+         manage_dir: true
+         key: "{{ lookup('file', '/mng/.ssh/id_rsa.pub') }}"
+
+     - name: Setup 'mng' user Sudo Access
+       copy:
+         dest: /etc/sudoers.d/mng
+         content: 'mng ALL=(ALL) NOPASSWD: ALL'
+         validate: /usr/sbin/visudo -cf %s
