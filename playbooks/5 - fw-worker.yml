@@ -1,5 +1,5 @@
 ---
-- hosts: kworkers
+- hosts: workers
   become: yes
   tasks:
     - name: FW rules for WORKER nodes

@@ -1,5 +1,5 @@
 ---
-- hosts: mng
+- hosts: rancher
   become: yes
   tasks:
     - name: Install docker engine
